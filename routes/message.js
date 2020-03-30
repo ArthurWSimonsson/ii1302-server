@@ -17,4 +17,6 @@ router.post('/message/read/:id', message_controller.message_change_read);
 
 router.delete('/message/:id', message_controller.message_delete);
 
+module.exports = router;
+
 // app.get('/get/:id', (req, res) => {res.send('Hello World!'); console.log(req)});
