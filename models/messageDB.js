@@ -1,5 +1,5 @@
 /***************************
- * 
+ * // for visitors
  * {     
  *       id: xx // auto-generated
  *   author: xx xx 
@@ -8,6 +8,7 @@
  *     read: true/false (with date?)
  * }
  * 
+ * // for owner
  * {
  *      main: true
  *   message: xxx
@@ -15,16 +16,50 @@
  * }
  * 
  ***************************/
-var {db} = require('../app');
+var dbModule = require('../app');
 
+// Design Document
+const view_messages = {
+    "_id" : "_design/view-messages",
+    "views" : {
+        "messages_all" : {
+        "map": "function(doc) {if (doc.author) emit(doc.date, {author : doc.author, title: doc.title})}"
+        },
+        "messages_unread" : {
+        "map": "function(doc) {if(doc.read == false) emit(doc.date, {author : doc.author, title: doc.title})}"
+    }
+    }
+}
 
-exports.leaveMessage = function(date, message, author) {
-    console.log("test", db)
-    console.log(`author is ${author} date is ${date} message is ${message}`)
-    db.insert({author:author, date:date , message:message}).then((body) => {
+exports.leaveMessage = function(date, title, message, author, read) {
+    // console.log(`author is ${author} date is ${date} message is ${message}`)
+    dbModule.db.insert({author:author, title:title, date:date , message:message, read:read}).then((body) => {
         console.log(body)
     })
+}
 
+exports.seeAllMessages = function() {
+    return dbModule.db.view('view-messages','messages_all').then((data) => {console.log(data); return data.rows});
+}
+//{include_docs: true} : param to include docs in query
+exports.seeNewMessages = function () {
+    return dbModule.db.view('view-messages','messages_unread').then((data) => {console.log(data); return data.rows});
+}
+
+exports.getMessage = function (id) {
+    return dbModule.db.get(`${id}`).then((data) => {console.log(data); return data;})
+} 
+
+exports.newWelcome = function (message) {
+    dbModule.db.get('welcome').then(doc => {doc.message = message; dbModule.db.insert(doc).then(doc => console.log(doc))});
+}
+
+exports.changeReadStatus = function (id) {
+    dbModule.db.get(`${id}`).then(doc => {doc.read = true; dbModule.db.insert(doc).then(doc => console.log(doc))}); 
+}
+ 
+exports.deleteMessage = function(id) {
+    dbModule.db.get(`${id}`).then(doc => {console.log('get',doc); dbModule.db.destroy(doc._id, doc._rev).then(doc => console.log(doc))});
 }
 
 //examples functions beneath, won't be used.

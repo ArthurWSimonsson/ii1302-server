@@ -13,7 +13,7 @@ router.post('/message/', message_controller.message_leave_new);
 
 router.put('/message/welcome', message_controller.message_change_welcome);
 
-router.post('/message/read/:id', message_controller.message_change_read);
+router.put('/message/read/', message_controller.message_change_read);
 
 router.delete('/message/:id', message_controller.message_delete);
 
