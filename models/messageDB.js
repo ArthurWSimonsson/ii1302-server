@@ -3,6 +3,7 @@
  * {     
  *       id: xx // auto-generated
  *   author: xx xx 
+ *    title: xx
  *  message: xxx
  *     date: xx-xx-xx xx.xx.xx
  *     read: true/false (with date?)

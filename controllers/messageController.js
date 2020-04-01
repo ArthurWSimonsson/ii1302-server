@@ -43,7 +43,6 @@ exports.message_change_read = function (req, res)  {
 
 exports.message_delete = function (req, res) {
     var id = req.params.id;
-    console.log('id', req.params.id)
     messageModel.deleteMessage(id);
     res.end('yes')
 }
