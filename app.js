@@ -17,7 +17,7 @@ var db = cloudant.db.use('ii1302');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', messageRouter);
+app.use('/api', messageRouter);
 
 
 
