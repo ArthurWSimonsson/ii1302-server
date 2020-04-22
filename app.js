@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require("body-parser");
 var Cloudant = require('@cloudant/cloudant');
 var cfenv = require('cfenv');
+var cors = require('cors');
+
 
 var messageRouter = require('./routes/message');
 
