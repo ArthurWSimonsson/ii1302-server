@@ -1,4 +1,5 @@
 applications:
-- name: ii1302-server
+# - name: ii1302-server
+- name: ii1302-door-com
   memory: 128M
   buildpack: sdk-for-nodejs
