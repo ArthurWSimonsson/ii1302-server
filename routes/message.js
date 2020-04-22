@@ -1,21 +1,23 @@
 var express = require('express');
 var router = express.Router();
+var cors = require('cors');
+
 
 var message_controller = require('../controllers/messageController');
 
-router.get('/message/new', message_controller.message_view_new);
+router.get('/message/new', cors(), message_controller.message_view_new);
 
-router.get('/message/all', message_controller.message_view_all);
+router.get('/message/all', cors(), message_controller.message_view_all);
 
-router.get('/message/:id', message_controller.message_view_one);
+router.get('/message/:id', cors(), message_controller.message_view_one);
 
-router.post('/message/', message_controller.message_leave_new);
+router.post('/message/', cors(), message_controller.message_leave_new);
 
-router.put('/message/welcome', message_controller.message_change_welcome);
+router.put('/message/welcome', cors(), message_controller.message_change_welcome);
 
-router.put('/message/read/', message_controller.message_change_read);
+router.put('/message/read/', cors(), message_controller.message_change_read);
 
-router.delete('/message/:id', message_controller.message_delete);
+router.delete('/message/:id', cors(), message_controller.message_delete);
 
 module.exports = router;
 
