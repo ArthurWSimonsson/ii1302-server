@@ -28,7 +28,7 @@ const view_messages = {
         },
         "messages_unread" : {
         "map": "function(doc) {if(doc.read == false) emit(doc.date, {author : doc.author, title: doc.title})}"
-    }
+        }
     }
 }
 

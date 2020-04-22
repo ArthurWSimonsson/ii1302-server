@@ -12,17 +12,32 @@ var cloudant = new Cloudant({ url: 'https://853610f6-18bb-4d0c-8802-b446227c8433
 
 var db = cloudant.db.use('ii1302');
 
-// exports.test = 'test1';
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api', messageRouter);
 
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
+// // error handler
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
-app.listen(appEnv.port, '0.0.0.0', function() {
+//  
+// appEnv.port
+
+app.listen(appEnv.port || 8080, '0.0.0.0', function() {
 
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
