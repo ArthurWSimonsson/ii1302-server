@@ -1,5 +1,6 @@
 applications:
 # - name: ii1302-server
 - name: ii1302-server
+  instances: 1
   memory: 128M
   buildpack: sdk-for-nodejs
