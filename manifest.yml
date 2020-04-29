@@ -3,5 +3,3 @@ applications:
 - name: ii1302-server
   memory: 128M
   buildpack: sdk-for-nodejs
-  routes:
-    - route: ii1302-server.eu-gb.mybluemix.net/api
