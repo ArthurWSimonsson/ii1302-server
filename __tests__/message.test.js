@@ -121,6 +121,9 @@ describe('PUT Endpoints', () => {
             expect(res.ok).toBe(true)
         });
     })
+})
+
+describe('DELETE Endpoints', () => {
     describe('DELETE api/message/:id', () => {
         it('404 with no matching id', async () => {
             let res = await request(app)
