@@ -15,7 +15,7 @@ router.post('/message/', cors(), message_controller.message_leave_new);
 
 router.put('/message/welcome', cors(), message_controller.message_change_welcome);
 
-router.put('/message/read/', cors(), message_controller.message_change_read);
+router.put('/message/read/:id', cors(), message_controller.message_change_read);
 
 router.delete('/message/:id', cors(), message_controller.message_delete);
 
