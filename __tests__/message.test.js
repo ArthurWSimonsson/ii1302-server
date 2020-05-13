@@ -3,10 +3,12 @@ const appModule = require('../app')
 
 const app = appModule.app;
 
+/* Author Arthur Simonsson */
+
 /* Tests are mostly to see if the status codes operate as desired. */
-/* If some data is desired, the responses body is checkde if present. */
+/* If some data is desired, the responses body is checked if present. */
 /* For requests as put/post/delete, the metadata of the data in question is returned */
-/* and the tests check if for correctness */
+/* and the tests check it for correctness */
 
 /* External calls are mocked to improve efficiency*/
 jest.mock('../models/messageDB')

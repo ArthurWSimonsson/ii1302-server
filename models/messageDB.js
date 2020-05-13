@@ -19,6 +19,11 @@
  ***************************/
 var dbModule = require('../app');
 
+/* Author Arthur Simonsson */
+
+/* All calls to Cloudant database. */
+/* Status thrown on error : - 500: server error -400: bad request -404: not found */
+
 // Design Document
 const view_messages = {
     "_id" : "_design/view-messages",

@@ -5,6 +5,10 @@ var Cloudant = require('@cloudant/cloudant');
 var cfenv = require('cfenv');
 var cors = require('cors');
 
+/* Author Arthur Simonsson */
+
+/* App (or server) initializing through express module and Cloudant authorization. */
+
 var messageRouter = require('./routes/message');
 
 /* For use with Cloud Foundry */

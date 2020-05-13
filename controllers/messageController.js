@@ -1,5 +1,10 @@
 var messageModel = require('../models/messageDB')
 
+/* Author Arthur Simonsson */
+
+/* Controller actions for message related endpoints. */
+/* Relevant status is thrown on error. */
+
 exports.message_view_new = async function (req, res) {
     try {
         query = await messageModel.seeNewMessages();
@@ -24,6 +29,7 @@ exports.message_view_one = async function (req, res) {
     catch (e) {res.sendStatus(404)}
 }
 
+/* 400 - Bad Request if missing a part */
 exports.message_leave_new = async function (req, res) {
     var author = req.body.author;
     var date = req.body.date;
@@ -41,7 +47,8 @@ exports.message_leave_new = async function (req, res) {
         catch (e) {res.status(500).send(e)}
     }
 }
- 
+
+/* 400 - Bad request is no new welcome message is present */
 exports.message_change_welcome = async function (req, res) {
     var message = req.body.message;
     if (!message) {

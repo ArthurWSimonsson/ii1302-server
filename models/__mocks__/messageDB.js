@@ -1,3 +1,7 @@
+/* Author Arthur Simonsson */
+
+/* Mocked database calls for testing with jest */
+
 exports.seeNewMessages = function () {
     return mockDesignView
 }
