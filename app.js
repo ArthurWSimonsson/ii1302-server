@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/api', messageRouter);
 
-
+/* Starts listening for connections */
 let server = app.listen(appEnv.port || 8080, '0.0.0.0', function() {
 
   // print a message when the server starts listening

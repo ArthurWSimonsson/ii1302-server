@@ -37,6 +37,7 @@ const view_messages = {
     }
 }
 
+/* Insert new message in database */
 exports.leaveMessage = function(date, title, message, author, read) {
     try {
         return dbModule.db.insert({author:author, title:title, date:date , message:message, read:read}).then((body) => {
@@ -46,6 +47,7 @@ exports.leaveMessage = function(date, title, message, author, read) {
     catch (error) {throw 500}
 }
 
+/* Get the view holding all messages */
 exports.seeAllMessages = function() {
     try {
         return dbModule.db.view('view-messages','messages_all').then((data) => {return data.rows});
@@ -53,6 +55,7 @@ exports.seeAllMessages = function() {
     catch (error) {throw 500}
 }
 
+/* Get the view holding all unread messages */
 exports.seeNewMessages = function () {
     try {
         return dbModule.db.view('view-messages','messages_unread').then((data) => {return data.rows});
@@ -60,6 +63,7 @@ exports.seeNewMessages = function () {
     catch (error) {throw 500}
 }
 
+/* Get specific message */
 exports.getMessage = function (id) {
     try {
         return dbModule.db.get(`${id}`).then((data) => {return data})
@@ -67,6 +71,7 @@ exports.getMessage = function (id) {
     catch (error) {throw 404}
 } 
 
+/* Inserts/stores new homescreen message */
 exports.newWelcome = async function (message) {
     try {
         return await dbModule.db.get('welcome').then(doc => {doc.message = message; return dbModule.db.insert(doc).then(doc => {return doc})});
@@ -74,6 +79,7 @@ exports.newWelcome = async function (message) {
     catch (error) {throw 500}
 }
 
+/* Changes read status on a message */
 exports.changeReadStatus = async function (id) {
     try {
         if (id !== 'welcome')
@@ -88,7 +94,8 @@ exports.changeReadStatus = async function (id) {
             throw 404;
     }
 }
- 
+
+/* Deletes a message */
 exports.deleteMessage = async function(id) {
     try {
         return await dbModule.db.get(`${id}`).then(doc => {return dbModule.db.destroy(doc._id, doc._rev).then(doc => {return doc})});
